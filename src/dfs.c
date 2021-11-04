@@ -5,7 +5,7 @@
 #include <stdio.h>   /* scanf, printf */
 #include <stdlib.h>  /* abort */
 #include <stdbool.h> /* bool, true, false */
-#include "dfs.h"
+#include "../include/dfs.h"
 
 void DFT(node *root)
 {
