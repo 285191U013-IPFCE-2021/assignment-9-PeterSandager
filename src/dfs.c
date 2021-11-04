@@ -9,18 +9,6 @@
 
 void DFT(node *root)
 {
-  // Mark root as visited.
-  root->visited = true;
-
-  push(root);
-
-    // Implement DFS
-  // Hint: You can use print_node, print_tree and/or print_stack.
-}
-
-node *make_node(int num, node *left, node *right)
-{
-  return 0;
 }
 
 void free_node(node *p)

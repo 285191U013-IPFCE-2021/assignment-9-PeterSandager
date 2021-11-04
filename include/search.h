@@ -1,4 +1,4 @@
-#include <stdbool.h>		/* bool, true, false */
+#include <stdbool.h> /* bool, true, false */
 
 #ifndef SEARCH_H
 #define SEARCH_H
