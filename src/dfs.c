@@ -6,13 +6,42 @@
 #include <stdlib.h>  /* abort */
 #include <stdbool.h> /* bool, true, false */
 #include "../include/dfs.h"
+#include <assert.h>
 
 void DFT(node *root)
+
 {
+  assert(root != NULL);
+  stack *temp = (struct stack *)malloc(sizeof(struct stack *));
+  temp = push(temp, root);
+  while (temp != NULL)
+  {
+    node *toppp = temp->node;
+    temp = pop(temp);
+
+    if (toppp->rchild != NULL)
+      temp = push(temp, toppp->rchild);
+
+    if (toppp->lchild != NULL)
+      temp = push(temp, toppp->lchild);
+  }
+}
+
+node *make_node(int num, node *left, node *right)
+{
+  struct node *n;                                 // creating a node pointer
+  n = (struct node *)malloc(sizeof(struct node)); // Allocating memory in the heap
+  n->num = num;                                   // Setting the data
+  n->lchild = left;                               // Setting the left and right children to NULL
+  n->rchild = right;                              // Setting the left and right children to NULL
+  return n;                                       // Finally returning the created node
 }
 
 void free_node(node *p)
 {
+  free_node(p->lchild);
+  free_node(p->rchild);
+  free(p);
 }
 
 void print_node(node *p)
@@ -44,9 +73,12 @@ void print_tree(node *p, int depth)
     print_tree(p->rchild, depth + 1);
 }
 
-stack *push(stack *topp, node *node)
+stack *push(stack *topp, node *newnode)
 {
-  return 0;
+  struct stack *temp = (struct stack *)malloc(sizeof(struct stack *));
+  temp->node = newnode; //Creating new stack.
+  temp->next = topp;
+  return temp;
 }
 
 bool isEmpty(stack *topp)
@@ -64,7 +96,11 @@ node *top(stack *topp)
 
 stack *pop(stack *topp)
 {
-  return 0;
+  stack *toppp;
+  printf("%d, ", topp->node->num);
+  toppp = topp->next; //poppin the top element.
+  free(topp);
+  return toppp;
 }
 
 void print_stack(stack *topp)
