@@ -11,18 +11,19 @@
 void DFT(node *root)
 
 {
-  assert(root != NULL);
-  stack *temp = (struct stack *)malloc(sizeof(struct stack *));
-  temp = push(temp, root);
+  assert(root != NULL);                                         // If root is null the tree is empty
+  stack *temp = (struct stack *)malloc(sizeof(struct stack *)); // Make stack named 'temp'
+  temp = push(temp, root);                                      // Push root onto stack
+
   while (temp != NULL)
   {
     node *toppp = temp->node;
     temp = pop(temp);
 
     if (toppp->rchild != NULL)
-      temp = push(temp, toppp->rchild);
+      temp = push(temp, toppp->rchild); // Pushing right child onto stack
 
-    if (toppp->lchild != NULL)
+    if (toppp->lchild != NULL) // Pushing left child onto stack
       temp = push(temp, toppp->lchild);
   }
 }
@@ -32,8 +33,8 @@ node *make_node(int num, node *left, node *right)
   struct node *n;                                 // creating a node pointer
   n = (struct node *)malloc(sizeof(struct node)); // Allocating memory in the heap
   n->num = num;                                   // Setting the data
-  n->lchild = left;                               // Setting the left and right children to NULL
-  n->rchild = right;                              // Setting the left and right children to NULL
+  n->lchild = left;                               // Setting the left children to left
+  n->rchild = right;                              // Setting the right children to right
   return n;                                       // Finally returning the created node
 }
 
